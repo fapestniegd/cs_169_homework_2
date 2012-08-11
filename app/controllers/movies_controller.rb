@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
       end
       if sort_by == "release_date"
         return @movies = Movie.all.sort_by(&:release_date)
-
       end
     else
        @movies = Movie.all
