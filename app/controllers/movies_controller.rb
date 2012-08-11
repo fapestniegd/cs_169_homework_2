@@ -7,7 +7,26 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    sort_by = params[:sort_by] # retrieve movie ID from URI route
+    if defined?sort_by
+      if sort_by == "title"
+        return @movies = Movie.all.sort_by(&:title)
+      end
+      if sort_by == "release_date"
+        return @movies = Movie.all.sort_by(&:release_date)
+
+      end
+    else
+       @movies = Movie.all
+    end
+    warn params.inspect
+  end
+
+  def by_title
+  end
+
+  def by_release_date
+    @movies = Movie.all.sort_by &:release_date
   end
 
   def new
